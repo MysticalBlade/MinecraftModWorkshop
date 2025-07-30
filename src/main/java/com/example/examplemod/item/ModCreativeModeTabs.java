@@ -1,6 +1,8 @@
+/* (C)2025 */
 package com.example.examplemod.item;
 
 import com.example.examplemod.ExampleMod;
+import com.example.examplemod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -13,13 +15,20 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ExampleMod.MODID);
 
-    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TAB.register("exampletab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ExampleItem.get()))
-                            .title(Component.translatable("creativetab.exampletab"))
-                            .displayItems((itemDisplayParameters, output) -> {
-                                output.accept(ModItems.ExampleItem.get());
-                            })
-                            .build());
+    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB =
+            CREATIVE_MODE_TAB.register(
+                    "exampletab",
+                    () ->
+                            CreativeModeTab.builder()
+                                    .icon(() -> new ItemStack(ModItems.ExampleItem.get()))
+                                    .title(Component.translatable("creativetab.exampletab"))
+                                    .displayItems(
+                                            (itemDisplayParameters, output) -> {
+                                                output.accept(ModItems.ExampleItem.get());
+
+                                                output.accept(ModBlocks.ExampleBlock.get());
+                                            })
+                                    .build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TAB.register(eventBus);
