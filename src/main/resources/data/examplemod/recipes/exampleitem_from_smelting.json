@@ -7,5 +7,5 @@
   "ingredient": {
     "item": "examplemod:exampleitem"
   },
-  "result": "examplemod:exampleblock"
+  "result": "examplemod:example_block"
 }
